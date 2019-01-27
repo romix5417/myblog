@@ -1,3 +1,43 @@
+
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var trigger = $('.hamburger'),
+            overlay = $('.overlay'),
+            isClosed = false;
+
+        trigger.click(function () {
+            console.log("debug the javascript, click.");
+            hamburger_cross();
+        });
+
+        $('#wrapper').toggleClass('toggled');
+
+        function hamburger_cross() {
+
+            if (isClosed == true) {
+                console.log("debug the javascript, click, hide()");
+                overlay.hide();
+                trigger.removeClass('is-open');
+                trigger.addClass('is-closed');
+                isClosed = false;
+            } else {
+                console.log("debug the javascript, click, show()");
+                overlay.show();
+                trigger.removeClass('is-closed');
+                trigger.addClass('is-open');
+                isClosed = true;
+            }
+        }
+
+        $('[data-toggle="offcanvas"]').click(function () {
+            $('#wrapper').toggleClass('toggled');
+        });
+    });
+</script>
 </body>
 </html>
