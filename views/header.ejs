@@ -13,72 +13,71 @@
 </head>
 <body>
 
-    <div id="wrapper">
-        <nav class="navbar navbar-inverse" role="navigation">
+        <nav class="navbar navbar-inverse" style="border-radius: 0px" role="navigation">
             <div class="container">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="/">YIDBlog</a>
+                        <a class="navbar-brand" style="position: absolute; padding: 10px 10px; left: 30px; text-decoration: none;" href="/">
+                            <img src="/images/logo.png">
+                        </a>
                     </div>
-                    <a class="navbar-brand" href="/">首页</a>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/reg"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                    <a class="navbar-brand" href="/" style="position: absolute; left: 60px;text-decoration: none;" >雷达网络管理系统</a>
+                    <ul class="nav navbar-nav navbar-right" style="position: absolute; right: 100px;">
+                        <li><a href="/reg" style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                        <li><a href="/login" style="text-decoration: none;"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                        <li><a href="/logout" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
+        <div id="wrapper">
+
         <div class="overlay"></div>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top sidebar" id="sidebar-wrapper" role="navigation">
             <ul class="nv sidebar-nav">
-                <li class="sidebar-nav">
+                <li>
                     <a href="#">
-                        Bootstrap 3
+                        导航栏
                     </a>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-home"></i>Home</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-folder"></i>Page one</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-file-o"></i>Second page</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-cog"></i>Third page</a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-fw fa-bar-chart"></i>设备概况<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <a style="margin-top: 0px; padding-top: 0px"></a>
+                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-pie-chart"></i>设备状态</a></li>
+                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-spinner"></i>网络拓扑</a></li>
+                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-recycle"></i>流量监控</a></li>
+                    </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Dropdown <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-fw fa-television"></i>设备管控<span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Dropdown heading>Dropdown heading</li>
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a> </li>
-                        <li><a href="#">Separated link</a> </li>
-                        <li><a href="#">One more separated link</a> </li>
+                        <a style="margin-top: 0px; padding-top: 0px"></a>
+                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-pie-chart"></i>电源控制</a></li>
+                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-spinner"></i>网络控制</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-bank"></i> Page four</a>
+                    <a href="#"><i class="fa fa-fw fa-file-text"></i>运行纪录</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-bank"></i> Page 5</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-bank"></i> last Page</a>
+                    <a href="#"><i class="fa fa-fw fa-cog"></i>系统配置</a>
                 </li>
             </ul>
         </nav>
 
-        <div id="page-content-wrapper">
-            <button type="button"  class="hamburger is-closed animated fadeInLeft"  data-toggle="offcanvas">
-                <span class="hamb-top"></span>
-                <span class="hamb-middle"></span>
-                <span class="hamb-bottom"></span>
-            </button>
+        <button type="button"  class="hamburger is-closed animated fadeInLeft"  data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+        </button>
 
-            <div class="container">
+        <div id="page-content-wrapper">
+            <div class="container content-open" id="content-cotainer">
                 <div class="col-sm-12">

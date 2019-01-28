@@ -64,13 +64,17 @@ html {
 /*-------------------------------*/
 /*     Sidebar nav styles        */
 /*-------------------------------*/
+.sidebar {
+  top: 50px;
+}
+
 .sidebar-nav {
   list-style: none;
   margin: 0;
   padding: 0;
   position: absolute;
-  top: 0;
-  width: 220px;
+  top: 10px;
+  width: 240px;
 }
 .sidebar-nav li {
   display: inline-block;
@@ -169,7 +173,7 @@ html {
   height: 32px;
   margin-left: 15px;
   position: fixed;
-  top: 20px;
+  top: 60px;
   width: 32px;
   z-index: 999;
 }
@@ -282,13 +286,13 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 /* SOME DEMO STYLES - NOT REQUIRED */
 body,
 html {
-  background-color: #583e7e;
+  background-color: darkgrey/*#583e7e;*/
 }
 body h1,
 body h2,
@@ -306,4 +310,8 @@ body a {
 }
 body a:hover {
   color: #ffffff;
+}
+
+.content-open{
+  margin-right: 310px;
 }
