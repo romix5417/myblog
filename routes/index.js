@@ -80,6 +80,13 @@ module.exports = function(app){
         });
     });
 
+    app.get('/devstat',function(req,res,next){
+
+        res.render('devstat',{
+            title:'设备状态',
+        });
+    });
+
     //注册用户
     app.post('/reg', function (req, res) {
 
