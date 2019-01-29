@@ -83,6 +83,12 @@ module.exports = function(app){
     app.get('/devstat',function(req,res,next){
 
         res.render('devstat',{
+            title:'系统状态',
+        });
+    });
+
+    app.get('/dev', function (req, res, next) {
+        res.render('dev', {
             title:'设备状态',
         });
     });

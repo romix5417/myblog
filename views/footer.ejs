@@ -8,7 +8,7 @@
         $(document).ready(function () {
             var trigger = $('.hamburger'),
                 overlay = $('.overlay'),
-                isClosed = false;
+                isClosed = true;
 
             var content = document.getElementById("content-cotainer");
             if(content == null)
@@ -25,17 +25,17 @@
 
                 if (isClosed == true) {
                     console.log("debug the javascript, click, hide()");
+                    overlay.show();
+                    trigger.removeClass('is-closed');
+                    trigger.addClass('is-open');
+                    content.setAttribute('class', 'container')
+                    isClosed = false;
+                } else {
+                    console.log("debug the javascript, click, show()");
                     overlay.hide();
                     trigger.removeClass('is-open');
                     trigger.addClass('is-closed');
                     content.setAttribute('class', 'container content-open')
-                    isClosed = false;
-                } else {
-                    console.log("debug the javascript, click, show()");
-                    overlay.show();
-                    trigger.removeClass('is-close');
-                    trigger.addClass('is-open');
-                    content.setAttribute('class', 'container')
                     isClosed = true;
                 }
             }

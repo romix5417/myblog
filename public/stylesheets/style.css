@@ -38,8 +38,10 @@ html {
 }
 #wrapper.toggled #page-content-wrapper {
   margin-right: -220px;
+  height: 100%;
   position: absolute;
 }
+
 #sidebar-wrapper {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -314,5 +316,52 @@ body a:hover {
 }
 
 .content-open{
-  margin-right: 27%;
+  margin-right: 20%;
+}
+
+.status {
+  font-size: 15px;
+  color:black;
+  list-style:none;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.status.grey {
+  background: #eeeeee;
+}
+
+.status.white {
+  background: whitesmoke;
+}
+
+.disptext {
+  color:black;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.disptitle {
+  position: relative;
+  width: 100%;
+  height: 8%;
+  background: darkslategray;
+}
+
+.disptitle a {
+  font-size:24px;
+  position: relative;
+  top:10px;
+  left:10px;
+  color: #0f0f0f;
+  text-decoration: none;
+}
+
+.disptitle a:hover {
+  font-size:24px;
+  position: relative;
+  top:10px;
+  left:10px;
+  color: #d0e9c6;
+  background: darkmagenta;
 }
