@@ -4,6 +4,13 @@
     </div>
 
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#overview').addClass('open');
+            $('#overview_title').attr('aria-expanded', 'true');
+        });
+
+
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
 
@@ -93,6 +100,8 @@
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
+
+
     </script>
 
 <%- include footer.ejs %>
