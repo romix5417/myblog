@@ -12,88 +12,90 @@
     <script src="/javascripts/bootstrap.js"></script>
     <script src="/javascripts/echarts.min.js"></script>
     <script src="/javascripts/echarts.js"></script>
+    <script src="/javascripts/jtopo.min.js"></script>
+    <script src="/javascripts/toolbar.js"></script>
 </head>
 <body>
 
-        <nav class="navbar navbar-inverse" style="border-radius: 0px; position: fixed; width: 100%; z-index: 9999" role="navigation">
-            <div class="container">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" style="position: absolute; padding: 10px 10px; left: 30px; text-decoration: none;" href="/">
-                            <img src="/images/logo.png">
-                        </a>
-                    </div>
-                    <a class="navbar-brand" href="/index" style="position: absolute; left: 60px;text-decoration: none;" >雷达网络管理系统</a>
-                    <ul class="nav navbar-nav navbar-right" style="position: absolute; right: 100px;">
-                        <li><a href="/reg" style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                        <li><a href="/login_bk" style="text-decoration: none;"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
-                        <li><a href="/logout" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
-                    </ul>
+    <nav class="navbar navbar-inverse" style="border-radius: 0px; position: fixed; width: 100%; z-index: 9999" role="navigation">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" style="position: absolute; padding: 10px 10px; left: 30px; text-decoration: none;" href="/">
+                        <img src="/images/logo.png">
+                    </a>
                 </div>
+                <a class="navbar-brand" href="/index" style="position: absolute; left: 60px;text-decoration: none;" >雷达网络管理系统</a>
+                <ul class="nav navbar-nav navbar-right" style="position: absolute; right: 100px;">
+                    <li><a href="/reg" style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                    <li><a href="/login_bk" style="text-decoration: none;"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                    <li><a href="/logout" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <div id="wrapper">
+    <div id="wrapper">
 
-        <div class="overlay"></div>
+    <div class="overlay"></div>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top sidebar" id="sidebar-wrapper" role="navigation">
-            <ul class="nv sidebar-nav">
-                <li>
-                    <a href="#">
-                        导航栏
-                    </a>
-                </li>
-                <li class="dropdown" id='overview'>
-                    <a id='overview_title' href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-fw fa-bar-chart"></i>设备概况<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <a style="margin-top: 0px; padding-top: 0px"></a>
-                        <li><a href="/devstat" class="col-md-offset-1"><i class="fa fa-fw fa-pie-chart"></i>设备状态</a></li>
-                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-spinner"></i>网络拓扑</a></li>
-                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-recycle"></i>流量监控</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-fw fa-television"></i>设备管控<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <a style="margin-top: 0px; padding-top: 0px"></a>
-                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-power-off"></i>电源控制</a></li>
-                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-internet-explorer"></i>网络控制</a></li>
-                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-terminal">远程登录</i></a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-fw fa-file-text"></i>运行记录<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <a style="margin-top: 0px; padding-top: 0px"></a>
-                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-bug"></i>故障记录</a></li>
-                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-line-chart"></i>流量记录</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-fw fa-cog"></i>系统配置<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <a style="margin-top: 0px; padding-top: 0px"></a>
-                        <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-power-off"></i>设备配置</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top sidebar" id="sidebar-wrapper" role="navigation">
+        <ul class="nv sidebar-nav">
+            <li>
+                <a href="#">
+                    导航栏
+                </a>
+            </li>
+            <li class="dropdown" id='overview'>
+                <a id='overview_title' href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-fw fa-bar-chart"></i>设备概况<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <a style="margin-top: 0px; padding-top: 0px"></a>
+                    <li><a href="/devstat" class="col-md-offset-1"><i class="fa fa-fw fa-pie-chart"></i>设备状态</a></li>
+                    <li><a href="/topo" class="col-md-offset-1"><i class="fa fa-fw fa-spinner"></i>网络拓扑</a></li>
+                    <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-recycle"></i>流量监控</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-fw fa-television"></i>设备管控<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <a style="margin-top: 0px; padding-top: 0px"></a>
+                    <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-power-off"></i>电源控制</a></li>
+                    <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-internet-explorer"></i>网络控制</a></li>
+                    <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-terminal">远程登录</i></a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-fw fa-file-text"></i>运行记录<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <a style="margin-top: 0px; padding-top: 0px"></a>
+                    <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-bug"></i>故障记录</a></li>
+                    <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-line-chart"></i>流量记录</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-fw fa-cog"></i>系统配置<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <a style="margin-top: 0px; padding-top: 0px"></a>
+                    <li><a href="#" class="col-md-offset-1"><i class="fa fa-fw fa-power-off"></i>设备配置</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
-        <button type="button"  class="hamburger is-closed animated fadeInLeft"  data-toggle="offcanvas">
-            <span class="hamb-top"></span>
-            <span class="hamb-middle"></span>
-            <span class="hamb-bottom"></span>
-        </button>
+    <button type="button"  class="hamburger is-closed animated fadeInLeft"  data-toggle="offcanvas">
+        <span class="hamb-top"></span>
+        <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+    </button>
 
-        <div id="page-content-wrapper">
-            <div class="container content-open" style=" height:100%;" id="content-cotainer">
-                <div class="col-sm-12">
+    <div id="page-content-wrapper" style="vertical-align: middle">
+        <div class="container content-open" style="vertical-align: middle; height:100%;" id="content-cotainer">
+            <div class="col-sm-12">

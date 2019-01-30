@@ -141,6 +141,12 @@ module.exports = function(app){
         });
     });
 
+    app.get('/topo', function (req, res, next) {
+        res.render('topo', {
+            title:'拓扑',
+        });
+    });
+
     //登陆
     app.get('/login_bk', function (req, res, next) {
         res.render('login_bk', {
