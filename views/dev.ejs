@@ -1,73 +1,107 @@
 <%- include devcommon_header %>
 
-    <canvas id="canvas" style="width:600px;height:400px; background: cornflowerblue;"></canvas>
+    <div id="myDiagramDiv" style="width:1000px;height:500px; background: #DAE4E4; margin: 40px"></div>
 
-    <script>
+    <script type="text/javascript">
+        function textStyle() {
+            return { font: "9pt  Segoe UI,sans-serif", stroke: "white" };
+        }
 
-        console.log("jtopo add node");
+        var make = go.GraphObject.make;
 
-        $(document).ready(function(){
-
-            console.log("jtopo add node");
-
-            var canvas = document.getElementById('canvas');
-            var stage = new JTopo.Stage(canvas);
-            //显示工具栏
-            showJTopoToobar(stage);
-
-            var scene = new JTopo.Scene(stage);
-            scene.alpha = 1;
-
-            console.log("add node");
-
-            function addNode(text, color){
-                var node = new JTopo.Node();
-                node.setImage('./images/topo/'+ color +'.png', true);
-                node.fontColor = '0,0,0';
-                scene.add(node);
-
-                node.mouseover(function(){
-                    this.text = text;
+        var myDiagram =
+            make(go.Diagram, "myDiagramDiv",
+                {
+                    "undoManager.isEnabled": true, // enable Ctrl-Z to undo and Ctrl-Y to redo
+                    layout: make(go.TreeLayout, // specify a Diagram.layout that arranges trees
+                        { nodeSpacing: 5, layerSpacing: 20 })
                 });
-                node.mouseout(function(){
-                    this.text = null;
-                });
-                return node;
-            }
 
-            function addLink(nodeA, nodeZ){
-                var link = new JTopo.FlexionalLink(nodeA, nodeZ);
-                link.strokeColor = '204,204,204';
-                link.lineWidth = 1;
-                scene.add(link);
-                return link;
-            }
+        // the template we defined earlier
+        myDiagram.nodeTemplate =
+            make(go.Node, "Horizontal",
+                { background: "#44CCFF" },
+                make(go.Picture,
+                    { margin: 5, width: 30, height: 30, background: "white" },
+                    new go.Binding("source")),
 
-            var rootNode = addNode('root', 'yellow');
+                make(go.Panel, "Table",
+                    {
+                        maxSize: new go.Size(150, 999),
+                        margin: new go.Margin(6, 10, 0, 3),
+                        defaultAlignment: go.Spot.Left
+                    },
+                    make(go.RowColumnDefinition, { column: 2, width: 4 }),
 
-            var icons = ['green', 'yellow', 'red', 'red'];
-            for(var i=0; i<icons.length; i++){
+                    make(go.TextBlock, "Default Text",
+                        { row: 0, column: 0, stroke: "red", font: "bold 10px sans-serif" },
+                        new go.Binding("text", "name")),
 
-                var node = addNode('second_' + i, icons[i]);
-                addLink(rootNode, node);
-                if(i == 0 || i == icons.length - 1){
-                    for(var j=0; j<4; j++){
-                        var thirdNode = addNode('third_' + j, 'green');
-                        addLink(node, thirdNode);
+                    make(go.TextBlock, "IP:",
+                        { row: 1, column: 0, stroke: "red", font: "bold 10px sans-serif"}),
 
-                        if(j == 3){
-                            for(var k=0; k<4; k++){
-                                var kNode = addNode('leaf_' + k, 'yellow');
-                                addLink(thirdNode, kNode);
-                            }
-                        }
-                    }
-                }
-            }
+                    make(go.TextBlock, "Default Text",
+                        { row: 1, column: 1, stroke: "red", font: "bold 10px sans-serif" },
+                        new go.Binding("text", "ip"))
+                )  // end Table Panel
+            );
 
-            // 树形布局
-            scene.doLayout(JTopo.layout.TreeLayout('down', 30, 107));
-        });
+        // define a Link template that routes orthogonally, with no arrowhead
+        myDiagram.linkTemplate =
+            make(go.Link,
+                { routing: go.Link.Orthogonal, corner: 3 },
+                make(go.Shape, { strokeWidth: 3, stroke: "#555" })); // the link shape
+
+        var model = make(go.TreeModel);
+        model.nodeDataArray =
+            [
+                { key: "0",              name: "admin", ip: "", source: "/images/topo/router.png" },
+
+                { key: "1", parent: "0", name: "长沙", ip: "",   source: "/images/topo/router.png" },
+
+                { key: "11", parent: "1", name: "Gate01", ip: "172.16.100.10",   source: "/images/topo/router.png" },
+                { key: "111", parent: "11", name: "Radar", ip: "172.16.102.11", source: "/images/topo/radar.png" },
+                { key: "112", parent: "11", name: "NVR", ip: "172.16.102.11", source: "/images/topo/nvr.png" },
+                { key: "113", parent: "11", name: "UPS", ip: "172.16.102.11", source: "/images/topo/ups.png" },
+
+                { key: "12", parent: "1", name: "Gate02", ip: "172.16.101.10",  source: "/images/topo/router.png" },
+                { key: "121", parent: "12", name: "Radar", ip: "172.16.102.11", source: "/images/topo/radar.png" },
+                { key: "122", parent: "12", name: "NVR", ip: "172.16.102.11", source: "/images/topo/nvr.png" },
+                { key: "123", parent: "12", name: "UPS", ip: "172.16.102.11", source: "/images/topo/ups.png" },
+
+                { key: "13", parent: "1", name: "Gate03", ip: "172.16.102.10", source: "/images/topo/router.png" },
+                { key: "131", parent: "13", name: "Radar", ip: "172.16.102.11", source: "/images/topo/radar.png" },
+                { key: "132", parent: "13", name: "NVR", ip: "172.16.102.11", source: "/images/topo/nvr.png" },
+                { key: "133", parent: "13", name: "UPS", ip: "172.16.102.11", source: "/images/topo/ups.png" },
+
+
+                { key: "2", parent: "0", name: "上海", ip: "",  source: "/images/topo/router.png" },
+
+                { key: "21", parent: "2", name: "Gate01", ip: "172.16.100.10",   source: "/images/topo/router.png" },
+                { key: "211", parent: "21", name: "Radar", ip: "172.16.102.11", source: "/images/topo/radar.png" },
+                { key: "212", parent: "21", name: "NVR", ip: "172.16.102.11", source: "/images/topo/nvr.png" },
+                { key: "213", parent: "21", name: "UPS", ip: "172.16.102.11", source: "/images/topo/ups.png" },
+
+                { key: "22", parent: "2", name: "Gate02", ip: "172.16.101.10",  source: "/images/topo/router.png" },
+                { key: "221", parent: "22", name: "Radar", ip: "172.16.102.11", source: "/images/topo/radar.png" },
+                { key: "222", parent: "22", name: "NVR", ip: "172.16.102.11", source: "/images/topo/nvr.png" },
+                { key: "223", parent: "22", name: "UPS", ip: "172.16.102.11", source: "/images/topo/ups.png" },
+
+                { key: "23", parent: "2", name: "Gate03", ip: "172.16.102.10", source: "/images/topo/router.png" },
+                { key: "231", parent: "23", name: "Radar", ip: "172.16.102.11", source: "/images/topo/radar.png" },
+                { key: "232", parent: "23", name: "NVR", ip: "172.16.102.11", source: "/images/topo/nvr.png" },
+                { key: "233", parent: "23", name: "UPS", ip: "172.16.102.11", source: "/images/topo/ups.png" },
+
+                { key: "3", parent: "0", name: "佛山", ip: "", source: "/images/topo/router.png" },
+                { key: "31", parent: "3", name: "Gate01", ip: "172.16.100.10",   source: "/images/topo/router.png" },
+                { key: "32", parent: "3", name: "Gate02", ip: "172.16.101.10",  source: "/images/topo/router.png" },
+                { key: "33", parent: "3", name: "Gate03", ip: "172.16.102.10", source: "/images/topo/router.png" },
+                { key: "34", parent: "3", name: "Gate03", ip: "172.16.102.10", source: "/images/topo/router.png" },
+                { key: "35", parent: "3", name: "Gate02", ip: "172.16.101.10",  source: "/images/topo/router.png" },
+                { key: "36", parent: "3", name: "Gate03", ip: "172.16.102.10", source: "/images/topo/router.png" },
+                { key: "37", parent: "3", name: "Gate03", ip: "172.16.102.10", source: "/images/topo/router.png" }
+            ];
+        myDiagram.model = model;
 
     </script>
 
